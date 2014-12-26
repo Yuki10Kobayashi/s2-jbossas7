@@ -6,7 +6,9 @@ version = '0.2'
 
 repositories {
     mavenCentral()
-    mavenRepo url: 'http://maven.seasar.org/maven2/'
+    maven {
+        url "http://maven.seasar.org/maven2"
+    }
 }
 
 dependencies {
