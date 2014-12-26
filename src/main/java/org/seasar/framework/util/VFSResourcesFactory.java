@@ -39,8 +39,9 @@ public class VFSResourcesFactory implements ResourcesFactory {
             URI physicalURI = VFSUtils.getPhysicalURI(vf);
 
             debugPhysicalURI(physicalURI);
-
-            if (url.getPath().toLowerCase().endsWith(".jar/")) {
+            
+            if (url.getPath().toLowerCase().matches(".*¥.jar/.*")) {
+            
                 File file = new File(url.getPath());
                 if (file.isDirectory()) {
                     return handleDir(physicalURI, rootPackage, rootDir);
@@ -68,7 +69,8 @@ public class VFSResourcesFactory implements ResourcesFactory {
         File f = new File(physicalURI);
         File[] jar = f.getParentFile().listFiles(new FileFilter() {
             public boolean accept(File pathname) {
-                return pathname.getName().toLowerCase().endsWith(".jar");
+//                return pathname.getName().toLowerCase().endsWith(".jar");
+            	return pathname.getName().toLowerCase().matches(".*¥.jar/.*");
             }
         });
 
