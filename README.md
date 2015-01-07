@@ -88,11 +88,10 @@ s2-jbossas7は、S2ContainerをJBoss AS7上で動作させるための拡張モ�
 
         s2container.diconに以下の記述を追加します。Servletを使わずにVFSResourcesFactoryを登録しますので、web.xmlの修正は不要です。
         ```xml
-                <component>
-                    @org.seasar.framework.util.ResourcesUtil@addResourcesFactory(
-                        "vfs", 
-                        new org.seasar.framework.util.VFSResourcesFactory()
-                    )
+				<component class="org.seasar.framework.util.VFSResourcesFactory">
+                    <initMethod>
+                        @org.seasar.framework.util.ResourcesUtil @ addResourcesFactory("vfs", #self)
+                    </initMethod>
                 </component>
         ```
 
